@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Inbox
+      Catbreeds
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -14,19 +14,17 @@
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">
-        Inbox
+        Catbreeds
       </ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <!-- <ion-list>
-    @for (message of getMessages(); track message) {
-      <app-message [message]="message"></app-message>
-    }
-  </ion-list> -->
+  <ion-toolbar>
+    <ion-searchbar [debounce]="1000" (ionInput)="onSearch(searchBar.value!)" #searchBar></ion-searchbar>
+  </ion-toolbar>
 
    <ion-list>
-    @for (cat of data.cats; track cat) {
+    @for (cat of cats; track cat) {
       <app-message [cat]="cat"></app-message>
     }
   </ion-list>

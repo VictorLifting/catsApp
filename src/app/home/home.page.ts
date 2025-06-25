@@ -12,6 +12,7 @@ import { Cat, DataService, Message } from '../services/data.service';
 })
 export class HomePage {
   public data = inject(DataService);
+  public cats : any;
   constructor() {
         this.data.loadCats();
   }
@@ -22,11 +23,15 @@ export class HomePage {
     }, 3000);
   }
 
-  getMessages(): Message[] {
-    return this.data.getMessages();
-  }
 
   getCats(){
     return this.data.loadCats()
+  }
+
+  onSearch(query:string){
+    this.data.searchBreeds(query).subscribe(resp=>{
+      console.log("busqueda", resp, "query: ", query)
+      this.cats = resp;
+    })
   }
 }

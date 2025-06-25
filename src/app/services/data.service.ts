@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { tap } from 'rxjs';
 
 export interface Message {
   fromName: string;
@@ -106,6 +107,35 @@ export class DataService {
       this.cats = resp
       console.log(resp)
     })
+  }
+
+  public searchBreeds(query: string){
+   return this.http.get(`https://api.thecatapi.com/v1/breeds/search`,
+      {
+        params:{
+          api_key:'DEMO-API-KEY',
+          attach_image:1,
+          q: query
+        }
+      }
+    ).pipe(
+      tap(
+        cats=>{
+          console.log("console desde el tap", cats)
+          this.cats = cats;
+        }
+      )
+    )
+  }
+
+  public getCatById(id: string) {
+    for (let i = 0; i < this.cats.length; i++) {
+      const cat = this.cats[i];
+      if(cat.id === id){
+        console.log(cat)
+        return cat
+      }
+    }
   }
 
 }
