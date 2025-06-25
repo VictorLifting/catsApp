@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
 import { Platform } from '@ionic/angular';
-import { Message } from '../services/data.service';
 
 @Component({
   selector: 'app-message',
@@ -11,8 +10,8 @@ import { Message } from '../services/data.service';
 })
 export class  MessageComponent {
   private platform = inject(Platform);
-  // @Input() message?: Message;
-   @Input() cat?: any;
+  @Input() cat?: any;
+
   isIos() {
     return this.platform.is('ios')
   }

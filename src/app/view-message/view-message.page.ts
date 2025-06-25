@@ -1,7 +1,7 @@
 
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DataService, Message } from '../services/data.service';
+import { catBreed, DataService} from '../services/data.service';
 
 @Component({
   selector: 'app-view-message',
@@ -10,8 +10,7 @@ import { DataService, Message } from '../services/data.service';
   standalone: false,
 })
 export class ViewMessagePage implements OnInit {
-  public message!: Message;
-  public cat!: any;
+  public cat!: catBreed;
   private data = inject(DataService);
   private activatedRoute = inject(ActivatedRoute);
 

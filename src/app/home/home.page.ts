@@ -1,8 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { RefresherCustomEvent } from '@ionic/angular';
-import { MessageComponent } from '../message/message.component';
 
-import { Cat, DataService, Message } from '../services/data.service';
+import { catBreed, DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-home',
@@ -12,9 +11,10 @@ import { Cat, DataService, Message } from '../services/data.service';
 })
 export class HomePage {
   public data = inject(DataService);
-  public cats : any;
+  public cats: catBreed[] = [];
+
   constructor() {
-        this.data.loadCats();
+    this.cats = this.data.cats;
   }
 
   refresh(ev: any) {
@@ -23,14 +23,8 @@ export class HomePage {
     }, 3000);
   }
 
-
-  getCats(){
-    return this.data.loadCats()
-  }
-
   onSearch(query:string){
     this.data.searchBreeds(query).subscribe(resp=>{
-      console.log("busqueda", resp, "query: ", query)
       this.cats = resp;
     })
   }
