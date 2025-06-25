@@ -9,9 +9,10 @@ import { Message } from '../services/data.service';
   standalone: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MessageComponent {
+export class  MessageComponent {
   private platform = inject(Platform);
-  @Input() message?: Message;
+  // @Input() message?: Message;
+   @Input() cat?: any;
   isIos() {
     return this.platform.is('ios')
   }

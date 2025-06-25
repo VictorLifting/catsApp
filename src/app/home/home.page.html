@@ -19,9 +19,15 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-list>
+  <!-- <ion-list>
     @for (message of getMessages(); track message) {
       <app-message [message]="message"></app-message>
+    }
+  </ion-list> -->
+
+   <ion-list>
+    @for (cat of data.cats; track cat) {
+      <app-message [cat]="cat"></app-message>
     }
   </ion-list>
 </ion-content>

@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
 
 export interface Message {
   fromName: string;
@@ -8,10 +9,21 @@ export interface Message {
   read: boolean;
 }
 
+export interface Cat {
+  breeds: any,
+  height:number,
+  id:string,
+  url:string,
+  width:number
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
+
+  private http = inject(HttpClient);
+  cats: any;
   public messages: Message[] = [
     {
       fromName: 'Matt Chorsey',
@@ -80,4 +92,20 @@ export class DataService {
   public getMessageById(id: number): Message {
     return this.messages[id];
   }
+
+  public loadCats(){
+   this.http.get(`https://api.thecatapi.com/v1/images/search`,
+      {
+        params:{
+          api_key:'DEMO-API-KEY',
+          limit:10,
+          has_breeds: true
+        }
+      }
+    ).subscribe((resp)=>{
+      this.cats = resp
+      console.log(resp)
+    })
+  }
+
 }
