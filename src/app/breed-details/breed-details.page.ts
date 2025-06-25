@@ -4,12 +4,12 @@ import { ActivatedRoute } from '@angular/router';
 import { catBreed, DataService} from '../services/data.service';
 
 @Component({
-  selector: 'app-view-message',
-  templateUrl: './view-message.page.html',
-  styleUrls: ['./view-message.page.scss'],
+  selector: 'app-breed-details',
+  templateUrl: './breed-details.page.html',
+  styleUrls: ['./breed-details.page.scss'],
   standalone: false,
 })
-export class ViewMessagePage implements OnInit {
+export class BreedDetailsPage implements OnInit {
   public cat!: catBreed;
   private data = inject(DataService);
   private activatedRoute = inject(ActivatedRoute);
@@ -19,6 +19,5 @@ export class ViewMessagePage implements OnInit {
   ngOnInit() {
     const id = this.activatedRoute.snapshot.paramMap.get('id') as string;
     this.cat = this.data.getCatById(id);
-    console.log(id)
   }
 }

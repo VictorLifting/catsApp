@@ -55,7 +55,6 @@ export interface Weight {
   metric:   string;
 }
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -69,7 +68,7 @@ export class DataService {
   public searchBreeds(query: string){
    return this.http.get<catBreed[]>(`https://api.thecatapi.com/v1/breeds/search`,
       {
-        params:{
+        params: {
           api_key:'DEMO-API-KEY',
           attach_image:1,
           q: query
@@ -79,16 +78,13 @@ export class DataService {
       tap(
         cats => {
           this.cats = cats;
-        }
-      )
-    )
+        }))
   }
 
   public getCatById (id: string) {
     for (let i = 0; i < this.cats.length; i++) {
       const cat = this.cats[i];
       if (cat.id === id) {
-        console.log(cat)
         return cat
       }
     }
